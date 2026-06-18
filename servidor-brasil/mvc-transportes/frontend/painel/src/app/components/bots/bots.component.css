@@ -1,0 +1,283 @@
+/* Container Geral - Desktop e Mobile */
+.bots-container {
+  padding: 20px;
+  background-color: #0d1117; /* Fundo escuro das imagens */
+  min-height: 100vh;
+  font-family: 'Inter', -apple-system, sans-serif;
+}
+
+/* Header */
+.header-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.page-title {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.btn-create-bot {
+  background-color: #f39c12; /* Laranja da Imagem 7 */
+  color: #000;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+/* Grid Inteligente: 1 coluna no mobile, várias no desktop */
+.bots-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+/* Card do Bot Estilo Premium */
+.bot-card {
+  background-color: #161b22; /* Cor do card do print */
+  border: 1px solid #30363d;
+  border-radius: 20px;
+  padding: 24px;
+  transition: transform 0.2s;
+}
+
+.bot-card:hover {
+  border-color: #f39c12;
+}
+
+/* Header do Card */
+.bot-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.bot-name {
+  color: #f0883e; /* Laranja do ID */
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.bot-status {
+  background: #010409;
+  padding: 6px 14px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  border: 1px solid #30363d;
+  color: #8b949e;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #e74c3c;
+}
+
+.bot-status.online .status-dot {
+  background: #2ecc71;
+  box-shadow: 0 0 10px #2ecc71;
+}
+
+/* Blocos Pretos de Métricas (CPU, RAM, etc) */
+.bot-stats-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.bot-stat-box {
+  background: #010409; /* Preto absoluto interno igual ao print */
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #21262d;
+  text-align: center;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.65rem;
+  color: #8b949e;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.stat-value {
+  color: #fff;
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+/* Barra de Última Ação */
+.bot-last-action {
+  background: rgba(33, 38, 45, 0.4);
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  color: #8b949e;
+  border-left: 3px solid #3498db;
+  margin-bottom: 20px;
+}
+
+/* Botões de Controle Coloridos */
+.bot-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.control-btn {
+  flex: 1;
+  height: 48px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 1.1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-play { background: #162a21; color: #2ecc71; } /* Verde Musgo */
+.btn-stop { background: #2a1616; color: #e74c3c; } /* Vermelho Vinho */
+.btn-refresh { background: #161b2a; color: #3498db; } /* Azul Petróleo */
+
+.btn-play:hover { background: #1f3d2f; }
+.btn-stop:hover { background: #3d1f1f; }
+
+/* Botão Trocar Número */
+.bot-action-wide {
+  width: 100%;
+  margin-top: 12px;
+  height: 48px;
+  background: #21262d;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+/* QR Code Area */
+.qrcode-area {
+  margin-top: 15px;
+  padding: 10px;
+  background: white;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.qrcode-area img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* Modais - Estilo Atualizado (Baseado no Print) */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.7); /* Fundo um pouco mais transparente */
+  backdrop-filter: blur(2px); /* Efeito de desfoque sutil no fundo */
+  display: flex; justify-content: center; align-items: center;
+  z-index: 1000;
+}
+
+.modal-box {
+  background: #21262d; /* Cinza um pouco mais claro que o fundo do painel */
+  border: 1px solid #30363d;
+  border-radius: 16px; /* Bordas levemente mais arredondadas */
+  padding: 24px;
+  width: 90%;
+  max-width: 360px; /* Mais estreito para ficar igual ao print */
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+/* Conteúdo Interno do Modal */
+.modal-header {
+  display: flex;
+  justify-content: center; /* Centraliza o título */
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.modal-header h3 {
+  margin: 0;
+  color: #ffffff; /* Título branco */
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-bottom: none; /* Removendo a linha de baixo */
+  padding-bottom: 0;
+}
+
+.icon-modal {
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+}
+
+.modal-body {
+  text-align: center; /* Texto centralizado */
+}
+
+.modal-body p {
+  color: #c9d1d9; /* Cor de texto mais suave */
+  font-size: 1rem;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+/* Botões do Modal */
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.btn-cancelar, .btn-confirmar {
+  flex: 1; /* Faz os botões terem o mesmo tamanho */
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: 0.2s;
+  border: none;
+}
+
+.btn-cancelar {
+  background: #30363d; /* Fundo cinza escuro */
+  color: #c9d1d9;
+}
+
+.btn-cancelar:hover {
+  background: #3b424a;
+  color: #ffffff;
+}
+
+.btn-confirmar.danger {
+  background: #e74c3c; /* Vermelho do print */
+  color: #ffffff;
+}
+
+.btn-confirmar.danger:hover {
+  background: #c0392b; /* Vermelho mais escuro no hover */
+}
+
+.btn-confirmar:hover { filter: brightness(1.1); }

@@ -1,0 +1,492 @@
+/* =========================================
+   CONTAINER E GRID DE BOTS
+   ========================================= */
+.bots-container {
+  padding: 30px;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: #ffffff;
+  box-sizing: border-box;
+}
+
+.header-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 35px;
+}
+
+.page-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.btn-create-bot {
+  background-color: #00d26a;
+  color: #000;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 15px rgba(0, 210, 106, 0.3);
+
+  &:hover { 
+    transform: translateY(-2px); 
+    box-shadow: 0 6px 20px rgba(0, 210, 106, 0.5); 
+  }
+  &:active { 
+    transform: translateY(0); 
+  }
+}
+
+.bots-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+/* =========================================
+   CARDS DOS BOTS
+   ========================================= */
+.bot-card {
+  background-color: #161923;
+  border-radius: 16px;
+  padding: 25px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  border: 1px solid #232733;
+}
+
+.bot-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+
+  .bot-name {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 0;
+    font-family: monospace, sans-serif;
+    letter-spacing: 0.5px;
+  }
+
+  .bot-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 800;
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+  }
+}
+
+.bot-card.offline .bot-status {
+  color: #fb5566;
+  .status-dot { background-color: #fb5566; }
+}
+
+.bot-card.online .bot-status {
+  color: #00d26a;
+  .status-dot { background-color: #00d26a; }
+}
+
+/* Blocos de Informação */
+.bot-info-block, .bot-stat-box {
+  background-color: #0e1015;
+  border-radius: 12px;
+  border: 1px solid #1a1e29;
+}
+
+.bot-number {
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+
+  .info-label {
+    color: #e47535;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+
+  .info-value {
+    font-size: 15px;
+    font-weight: 500;
+  }
+}
+
+.bot-stats-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+
+  .bot-stat-box {
+    flex: 1;
+    padding: 20px 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .stat-label {
+      color: #58617a;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .stat-value {
+      font-size: 24px;
+      font-weight: bold;
+    }
+  }
+}
+
+.bot-last-action {
+  text-align: center;
+  color: #58617a;
+  font-size: 13px;
+  font-style: italic;
+  margin-bottom: 25px;
+}
+
+/* Botões de Ação do Card */
+.bot-controls {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 15px;
+
+  .control-btn {
+    flex: 1;
+    padding: 18px;
+    border-radius: 14px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease;
+
+    &.btn-play {
+      background-color: rgba(0, 210, 106, 0.08);
+      border-color: rgba(0, 210, 106, 0.15);
+      color: #00d26a;
+      &:hover { background-color: rgba(0, 210, 106, 0.15); }
+    }
+
+    &.btn-stop {
+      background-color: rgba(251, 85, 102, 0.08);
+      border-color: rgba(251, 85, 102, 0.15);
+      color: #fb5566;
+      &:hover { background-color: rgba(251, 85, 102, 0.15); }
+    }
+
+    &.btn-refresh {
+      background-color: rgba(43, 175, 255, 0.08);
+      border-color: rgba(43, 175, 255, 0.15);
+      color: #2bafff;
+      &:hover { background-color: rgba(43, 175, 255, 0.15); }
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+}
+
+.bot-action-wide {
+  width: 100%;
+  background-color: #11131a;
+  border: 1px solid #232733;
+  color: #838ca6;
+  padding: 16px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 13px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.2s ease;
+
+  .grid-icon { font-size: 16px; }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+  }
+
+  &:active { transform: scale(0.98); }
+}
+
+/* =========================================
+   MODAIS (Padrão Global)
+   ========================================= */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px); /* Efeito de vidro adicionado */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+
+  .modal-box {
+    background: #161923; /* Mesma cor premium do card do bot */
+    border: 1px solid #232733;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 450px;
+    padding: 30px;
+    margin: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+
+    .modal-header {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 16px;
+      
+      h3 {
+        margin: 0;
+        font-size: 20px;
+        font-family: monospace, sans-serif;
+        font-weight: 600;
+        color: #fff;
+      }
+    }
+
+    .modal-body p {
+      font-size: 14px;
+      color: #838ca6;
+      line-height: 1.5;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .modal-input {
+      width: 100%;
+      padding: 15px;
+      border-radius: 8px;
+      background: #0e1015;
+      border: 1px solid #232733;
+      color: #fff;
+      font-family: monospace;
+      font-size: 16px;
+      box-sizing: border-box;
+      outline: none;
+      
+      &:focus { border-color: #2bafff; }
+    }
+
+    .modal-footer {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+
+      button {
+        flex: 1;
+        padding: 12px 24px;
+        border-radius: 8px;
+        border: none;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .btn-cancelar {
+        background: transparent;
+        color: #838ca6;
+        border: 1px solid #232733;
+        &:hover { background: #232733; color: #fff; }
+      }
+
+      .btn-confirmar {
+        background: #2bafff; /* Azul padrão */
+        color: #000;
+        &:hover { filter: brightness(1.1); }
+        
+        &.danger {
+          background: #2e0a0a;
+          color: #ef5350;
+          border: 1px solid #4a1a1a;
+          &:hover { filter: brightness(1.2); }
+        }
+      }
+    }
+  }
+}
+/* =========================================
+   RESPONSIVIDADE (MOBILE & TABLET)
+   ========================================= */
+@media (max-width: 768px) {
+  /* Reduz o respiro lateral para aproveitar a tela do celular */
+  .bots-container {
+    padding: 15px;
+  }
+
+  /* Empilha o título e o botão de criar bot */
+  .header-actions {
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch;
+    margin-bottom: 25px;
+  }
+
+  .page-title {
+    text-align: center;
+  }
+
+  /* Faz o botão ocupar a largura toda, mais fácil para clicar (Touch Target) */
+  .btn-create-bot {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* O card do bot passa a usar todo o espaço disponível */
+  .bot-card {
+    max-width: 100%;
+    padding: 15px; /* Reduz um pouco o padding interno no mobile */
+  }
+
+  /* Reduz ligeiramente os textos gigantes de CPU/RAM para não encavalar */
+  .bot-stats-row .bot-stat-box .stat-value {
+    font-size: 20px;
+  }
+
+  /* Ajustes do Modal para não vazar na tela fina */
+  .modal-overlay .modal-box {
+    padding: 20px;
+    margin: 15px;
+    
+    .modal-footer {
+      flex-direction: column-reverse; /* Botão de cancelar vai para baixo */
+      
+      button { width: 100%; }
+    }
+  }
+}
+/* Estilização da Área do QR Code */
+.qrcode-area {
+  margin: 15px 0;
+  padding: 15px;
+  background-color: #ffffff; // Fundo branco para facilitar a leitura da câmera
+  border-radius: 12px;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+
+  img {
+    width: 100%;
+    max-width: 220px; // Tamanho ideal para não estourar o card
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    color: #1a1a1a;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+
+/* Animação suave para o QR Code aparecer */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Ajuste no botão "Aguarde" para dar feedback visual */
+.bot-action-wide:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  background: linear-gradient(45deg, #444, #222);
+}
+/* ========================================== */
+/* HEADER DO BOT: NOME E BOTÃO DE EXCLUIR     */
+/* ========================================== */
+.bot-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .btn-delete {
+    background: none;
+    border: none;
+    color: #fb5566;
+    font-size: 1.1rem;
+    cursor: pointer;
+    opacity: 0.5;
+    padding: 0;
+    transition: all 0.2s ease;
+
+    &:hover {
+      opacity: 1;
+      transform: scale(1.15); /* Dá um pulinho quando passa o mouse */
+    }
+  }
+}
+
+/* ========================================== */
+/* QR CODE: MODO COMPACTO                     */
+/* ========================================== */
+.qr-mode {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px; /* Reduzi o espaço entre a imagem e os botões */
+  margin: 10px 0;
+
+  .qr-text { 
+    font-size: 11px; 
+    color: #838ca6; 
+    font-weight: bold;
+    margin: 0;
+  }
+
+  .qr-image-wrapper {
+    background: #fff;
+    padding: 6px; /* Borda branca fininha */
+    border-radius: 8px;
+    
+    img { 
+      width: 140px !important; /* O segredo para não esticar o card! */
+      height: 140px !important; 
+      object-fit: contain;
+      border-radius: 6px; 
+      display: block; 
+    }
+  }
+
+  .btn-close-qr {
+    background-color: rgba(251, 85, 102, 0.1);
+    color: #fb5566;
+    border-color: transparent;
+    font-size: 0.8rem;
+    transition: all 0.2s ease;
+    
+    &:hover { 
+      background-color: rgba(251, 85, 102, 0.2); 
+    }
+  }
+}

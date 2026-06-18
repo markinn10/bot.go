@@ -1,0 +1,63 @@
+<ng-container *ngIf="mostrarSidebar">
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="logo">
+        <span>🚚</span>
+        <span class="logo-text">MVC Transportes</span>
+      </div>
+      
+      <nav>
+        <a routerLink="/dashboard" routerLinkActive="active">
+          <span>📊</span> Dashboard
+        </a>
+        <a routerLink="/bots" routerLinkActive="active">
+          <span>🤖</span> Bots
+        </a>
+        <a routerLink="/rotas" routerLinkActive="active">
+          <span>🚚</span> Rotas
+        </a>
+        <a routerLink="/financeiro" routerLinkActive="active">
+          <span>💰</span> Financeiro
+        </a>
+      </nav>
+
+      <div class="menu-footer">
+  <button class="btn-logout" (click)="sair()">
+    <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M15 3H7C5.89543 3 5 3.89543 5 5V19C5 20.1046 5.89543 21 7 21H15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M19 12H9M19 12L16 9M19 12L16 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="text-logout">Sair</span>
+  </button>
+</div>
+
+    </aside>
+    
+    <main class="content">
+      <router-outlet />
+    </main>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="!mostrarSidebar">
+  <router-outlet />
+</ng-container>
+<div class="modal-overlay" *ngIf="mostrarModalLogout" (click)="fecharModalLogout()">
+  <div class="modal-box" (click)="$event.stopPropagation()">
+    
+    <div class="modal-header">
+      <span class="icon-modal" style="color: #e74c3c;">🚪</span> 
+      <h3>Confirmar Saída</h3>
+    </div>
+
+    <div class="modal-body">
+      <p>Tem certeza que deseja sair do MVC Transportes?</p>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn-cancelar" (click)="fecharModalLogout()">Cancelar</button>
+      <button class="btn-confirmar danger" (click)="confirmarLogout()">Sair</button>
+    </div>
+
+  </div>
+</div>

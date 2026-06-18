@@ -1,0 +1,56 @@
+<div class="rotas-container">
+  <div class="header">
+    <h2>Rotas das últimas 24h</h2>
+    <span class="total">{{ rotas.length }} rotas</span>
+  </div>
+
+  <div *ngIf="rotas.length === 0" class="empty">
+    Nenhuma rota registrada nas últimas 24h.
+  </div>
+
+  <div class="tabela-responsiva" *ngIf="rotas.length > 0">
+    <table>
+      <thead>
+        <tr>
+          <th>Horário</th>
+          <th>Grupo</th>
+          <th>Mensagem</th>
+          <th>Região</th>
+          <th>Bot</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let rota of rotasPaginadas">
+          <td>{{ rota.horario | date:'HH:mm:ss' }}</td>
+          <td>{{ rota.grupo }}</td>
+          <td class="mensagem">{{ rota.mensagem }}</td>
+          <td><span class="badge-regiao">{{ rota.regiao }}</span></td>
+          <td>{{ rota.botId }}</td>
+          <td>
+            <button class="btn" (click)="deletar(rota.id)">Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="paginacao" *ngIf="rotas.length > 0">
+    
+    <button (click)="mudarPagina(paginaAtual - 1)" [disabled]="paginaAtual === 1">
+      &lt;
+    </button>
+
+    <ng-container *ngFor="let pag of paginas">
+      <button (click)="mudarPagina(pag)" [class.ativo]="paginaAtual === pag">
+        {{ pag }}
+      </button>
+    </ng-container>
+
+    <button (click)="mudarPagina(paginaAtual + 1)" [disabled]="paginaAtual === totalPaginas">
+      &gt;
+    </button>
+    
+  </div>
+
+</div>

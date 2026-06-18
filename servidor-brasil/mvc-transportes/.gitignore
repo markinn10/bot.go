@@ -1,0 +1,10 @@
+node_modules/
+.wwebjs_auth/
+.wwebjs_cache/
+target/
+*.log
+data/
+.env
+bot/*.tar.gz
+frontend/painel/.angular/cache/
+frontend/painel/dist/

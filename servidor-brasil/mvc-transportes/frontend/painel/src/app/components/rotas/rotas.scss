@@ -1,0 +1,144 @@
+.rotas-container {
+  padding: 28px;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+
+    h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .total {
+      background: #1a1a1a;
+      color: #666;
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 0.78rem;
+      border: 1px solid #2a2a2a;
+    }
+  }
+
+  .loading, .empty {
+    text-align: center;
+    padding: 48px;
+    color: #444;
+    font-size: 0.85rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #111;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #1f1f1f;
+
+    thead {
+      background: #151515;
+
+      th {
+        padding: 12px 16px;
+        text-align: left;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #444;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border-bottom: 1px solid #1f1f1f;
+      }
+    }
+
+    tbody {
+      tr {
+        border-bottom: 1px solid #1a1a1a;
+        transition: background 0.15s;
+
+        &:hover { background: #151515; }
+        &:last-child { border-bottom: none; }
+
+        td {
+          padding: 11px 16px;
+          font-size: 0.83rem;
+          color: #aaa;
+
+          &.mensagem {
+            max-width: 250px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
+
+  .badge-regiao {
+    background: #0a1a2e;
+    color: #42a5f5;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    border: 1px solid #1a2a4a;
+  }
+
+  .btn {
+    padding: 5px 10px;
+    border: 1px solid #2e0a0a;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    background: #1a0a0a;
+    color: #ef5350;
+    transition: all 0.15s;
+
+    &:hover { border-color: #ef5350; }
+  }
+}
+.tabela-responsiva {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* Rolagem suave no iPhone/Android */
+}
+.paginacao {
+  display: flex;
+  justify-content: center; /* Centraliza tudo no meio */
+  align-items: center;
+  gap: 8px;                /* Espaçamento entre botões */
+  margin-top: 24px;
+  padding-bottom: 20px;
+  width: 100%;
+
+  button {
+    background: #151515;   /* Fundo dark discreto */
+    color: #444;           /* Texto cinza apagado */
+    border: 1px solid #1f1f1f;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover:not(:disabled) {
+      background: #1a1a1a;
+      color: #fff;         /* Acende no hover */
+      border-color: #333;
+    }
+
+    &.ativo {
+      background: #1a1a1a;
+      color: #42a5f5;      /* Cor azul suave (mesma da sua badge) para o número ativo */
+      border-color: #1a2a4a;
+    }
+
+    &:disabled {
+      opacity: 0.1;        /* Quase some quando desativado */
+      cursor: not-allowed;
+    }
+  }
+}

@@ -1,0 +1,292 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: #111;
+  color: #ccc;
+}
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 220px;
+  background: #111;
+  border-right: 1px solid #1e1e1e;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0;
+  position: fixed;
+  height: 100vh;
+  z-index: 999;
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 20px 28px;
+    margin-bottom: 8px;
+
+    .logo-text {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #fff;
+    }
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    padding: 0 12px;
+
+    a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      color: #555;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 0.83rem;
+      font-weight: 400;
+      transition: all 0.15s;
+
+      span { font-size: 1rem; }
+
+      &:hover { color: #aaa; }
+
+      &.active {
+        color: #fff;
+        background: #1a1a1a;
+      }
+    }
+  }
+}
+
+.content {
+  margin-left: 220px;
+  flex: 1;
+  min-height: 100vh;
+  background: #111;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+
+  .modal-box {
+    background: #161616;
+    border: 1px solid #2a2a2a;
+    border-radius: 14px;
+    width: 100%;
+    max-width: 400px;
+    padding: 28px;
+
+    .modal-header h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .modal-body p {
+      font-size: 0.88rem;
+      color: #aaa;
+      line-height: 1.6;
+
+      b { color: #fff; }
+    }
+
+    .modal-footer {
+      display: flex;
+      gap: 10px;
+      margin-top: 24px;
+      justify-content: flex-end;
+
+      button {
+        padding: 10px 20px;
+        border-radius: 8px;
+        border: none;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: opacity 0.15s;
+
+        &:hover { opacity: 0.85; }
+      }
+
+      .btn-cancelar {
+        background: #1e1e1e;
+        color: #666;
+        border: 1px solid #2a2a2a;
+      }
+
+      .btn-confirmar {
+        background: #fff;
+        color: #111;
+
+        &.danger {
+          background: #2e0a0a;
+          color: #ef5350;
+          border: 1px solid #4a1a1a;
+        }
+      }
+    }
+  }
+}
+
+/* =======================================================
+   ESTILO DO BOTÃO DE SAIR (DESKTOP)
+   ======================================================= */
+.menu-footer {
+  margin-top: auto;
+  padding: 15px;
+  border-top: 1px solid #30363d;
+}
+
+.btn-logout {
+  width: 100%;
+  background: transparent;
+  color: #8b949e;
+  border: 1px solid #30363d;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  transition: 0.3s;
+
+  .icon-svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.2s;
+  }
+
+  &:hover {
+    background: #2a1616;
+    color: #e74c3c;
+    border-color: #e74c3c;
+
+    .icon-svg {
+      transform: translateX(3px); /* Faz a setinha andar pro lado ao passar o mouse no PC */
+    }
+  }
+}
+
+
+/* =======================================================
+   📱 RESPONSIVIDADE MOBILE (Modo App)
+   ======================================================= */
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 10px;
+    border-right: none;
+    border-top: 1px solid #1e1e1e;
+    box-shadow: 0 -4px 15px rgba(0,0,0,0.5);
+    background: #111; /* Garante que o menu cubra os itens de baixo */
+
+    /* Esconde a Logo */
+    .logo {
+      display: none;
+    }
+
+    /* Navegação vira linha horizontal */
+    nav {
+      flex-direction: row;
+      justify-content: space-around;
+      flex: 1;
+      padding: 0;
+
+      a {
+        flex-direction: column;
+        gap: 4px;
+        padding: 5px;
+        font-size: 0.7rem;
+        text-align: center;
+        background: transparent !important;
+
+        span {
+          font-size: 1.4rem;
+        }
+
+        &.active {
+          color: #fff;
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
+
+  /* O footer do menu se junta aos ícones da navegação */
+  .menu-footer {
+    margin: 0;
+    padding: 0;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Ajuste perfeito para o botão de sair com SVG no Mobile */
+  .btn-logout {
+    border: none;
+    padding: 5px 12px;
+    background: transparent;
+    flex-direction: column; /* Coloca o ícone em cima da palavra "Sair" */
+    gap: 4px;
+    color: #8b949e;
+    
+    .text-logout {
+      font-size: 0.7rem;
+      font-weight: 400;
+      display: block; 
+    }
+
+    .icon-svg {
+      width: 22px; /* Tamanho exato para alinhar com os outros emojis */
+      height: 22px;
+    }
+
+    &:hover {
+      background: transparent;
+      color: #e74c3c;
+      border-color: transparent;
+      
+      .icon-svg {
+        transform: none; /* Tira a animação de deslizar no celular */
+      }
+    }
+  }
+
+  /* Libera o lado esquerdo e dá espaço embaixo para o menu não cobrir as tabelas */
+  .content {
+    margin-left: 0;
+    padding-bottom: 75px; 
+  }
+}

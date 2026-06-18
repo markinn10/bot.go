@@ -1,0 +1,51 @@
+<div class="dashboard-container">
+  <div class="header">
+    <h2>Desempenho</h2>
+    <span class="subtitle">Acompanhe os principais indicadores do sistema.</span>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <span class="card-label">Bots online</span>
+      <span class="card-value">{{ botsOnline }}</span>
+    </div>
+    <div class="card">
+      <span class="card-label">Total de bots</span>
+      <span class="card-value">{{ bots.length }}</span>
+    </div>
+    <div class="card">
+      <span class="card-label">Rotas (24h)</span>
+      <span class="card-value">{{ totalRotas24h }}</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Status dos Bots</h3>
+    <div class="bots-list">
+      <div class="bot-row" *ngFor="let bot of bots">
+        <div class="bot-left">
+          <span class="dot" [class.dot-online]="bot.status === 'ONLINE'" [class.dot-offline]="bot.status !== 'ONLINE'"></span>
+          <span class="bot-id">{{ bot.id }}</span>
+        </div>
+        <div class="bot-right">
+          <span class="bot-action">{{ bot.lastAction }}</span>
+          <span class="bot-perf">{{ bot.perf }}</span>
+        </div>
+      </div>
+      <div *ngIf="bots.length === 0" class="empty" style="padding: 18px;">Nenhum bot registrado.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Últimas Rotas</h3>
+    <div class="rotas-list">
+      <div class="rota-row" *ngFor="let rota of rotas.slice(0, 5)">
+        <span class="rota-hora">{{ rota.horario | date:'HH:mm:ss' }}</span>
+        <span class="rota-grupo">{{ rota.grupo }}</span>
+        <span class="rota-msg">{{ rota.mensagem }}</span>
+        <span class="badge-regiao">{{ rota.regiao }}</span>
+      </div>
+      <div *ngIf="rotas.length === 0" class="empty" style="padding: 18px;">Nenhuma rota nas últimas 24h.</div>
+    </div>
+  </div>
+</div>

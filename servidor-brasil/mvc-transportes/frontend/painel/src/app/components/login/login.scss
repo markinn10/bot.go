@@ -1,0 +1,107 @@
+/* Fundo da tela inteira */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #0f172a; /* Tom escuro azulado moderno */
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* O cartão central do Login */
+.login-card {
+  background-color: #1e293b; /* Fundo do card um pouco mais claro */
+  border-radius: 12px;
+  padding: 40px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  border: 1px solid #334155;
+  color: #f8fafc;
+}
+
+/* Cabeçalho (Logo e Títulos) */
+.login-header {
+  text-align: center;
+  margin-bottom: 35px;
+
+  .logo-icon {
+    font-size: 50px;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: #38bdf8; /* Azul destaque */
+  }
+
+  p {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #94a3b8;
+  }
+}
+
+/* Formulário e Campos */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  label {
+    font-size: 14px;
+    color: #cbd5e1;
+    font-weight: 500;
+  }
+
+  input {
+    padding: 14px 16px;
+    border-radius: 8px;
+    border: 1px solid #475569;
+    background-color: #0f172a;
+    color: #f8fafc;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    outline: none;
+
+    /* Efeito quando clica no campo */
+    &:focus {
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+    }
+  }
+}
+
+/* Botão de Entrar */
+.btn-login {
+  margin-top: 15px;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background-color: #0284c7;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+
+  &:hover {
+    background-color: #0369a1; /* Escurece no hover */
+  }
+
+  /* Efeito de apertar o botão */
+  &:active {
+    transform: scale(0.98);
+  }
+}

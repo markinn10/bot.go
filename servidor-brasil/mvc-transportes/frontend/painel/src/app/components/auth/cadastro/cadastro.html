@@ -1,0 +1,96 @@
+<div class="auth-page">
+  <div class="auth-card">
+
+    <div class="auth-logo">
+      <span>🚚</span>
+      <h1>MVC Transportes</h1>
+    </div>
+
+    <h2>Criar conta</h2>
+    <p class="auth-sub">Preencha os dados abaixo para se cadastrar</p>
+
+    <div class="sucesso-msg" *ngIf="sucesso">{{ sucesso }}</div>
+
+    <div *ngIf="!sucesso">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nome *</label>
+          <input type="text" [(ngModel)]="nome" placeholder="Seu nome" />
+        </div>
+        <div class="form-group">
+          <label>Sobrenome *</label>
+          <input type="text" [(ngModel)]="sobrenome" placeholder="Seu sobrenome" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>E-mail *</label>
+        <input type="email" [(ngModel)]="email" placeholder="seu@email.com" />
+      </div>
+
+      <div class="form-group">
+        <label>Telefone *</label>
+        <input type="tel" [(ngModel)]="telefone" placeholder="(DDD) Telefone" />
+      </div>
+
+      <div class="form-group">
+        <label>Senha *</label>
+        <div class="input-senha">
+          <input
+            [type]="mostrarSenha ? 'text' : 'password'"
+            [(ngModel)]="senha"
+            placeholder="Mínimo 6 caracteres"
+          />
+          <span class="toggle-senha" (click)="mostrarSenha = !mostrarSenha">
+            {{ mostrarSenha ? '🙈' : '👁️' }}
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Confirmar Senha *</label>
+        <div class="input-senha">
+          <input
+            [type]="mostrarConfirmar ? 'text' : 'password'"
+            [(ngModel)]="confirmarSenha"
+            placeholder="Repita a senha"
+          />
+          <span class="toggle-senha" (click)="mostrarConfirmar = !mostrarConfirmar">
+            {{ mostrarConfirmar ? '🙈' : '👁️' }}
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Pergunta de Segurança *</label>
+        <select [(ngModel)]="perguntaSeguranca">
+          <option value="" disabled>Selecione uma pergunta</option>
+          <option *ngFor="let p of perguntas" [value]="p">{{ p }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Resposta *</label>
+        <input type="text" [(ngModel)]="respostaSeguranca" placeholder="Sua resposta" />
+      </div>
+
+      <div class="erro-msg" *ngIf="erro">{{ erro }}</div>
+
+      <div class="termos">
+        Ao se cadastrar você concorda com nossos
+        <a href="#">Termos de uso</a> e nossa
+        <a href="#">Política de Privacidade</a>.
+      </div>
+
+      <button class="btn-primary" (click)="cadastrar()" [disabled]="carregando">
+        {{ carregando ? 'Cadastrando...' : 'Cadastrar-se' }}
+      </button>
+
+      <div class="auth-links">
+        <span>Já tem conta?</span>
+        <a routerLink="/login">Fazer login</a>
+      </div>
+    </div>
+
+  </div>
+</div>

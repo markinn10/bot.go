@@ -1,0 +1,30 @@
+// Stub: redireciona pro binario Go (mvc-sniper).
+// O BOT_ID e' herdado de process.env.name (que o PM2 injeta automatico).
+const { spawn } = require('child_process');
+const path = require('path');
+
+const BIN = '/home/ubuntu/mvc-sniper/mvc-sniper';
+const CWD = '/home/ubuntu/mvc-sniper';
+
+console.log(`[STUB] Iniciando Go binary: ${BIN} (BOT_ID=${process.env.name || 'unset'})`);
+
+const child = spawn(BIN, [], {
+  cwd: CWD,
+  env: { ...process.env, BOT_ID: process.env.name || process.env.BOT_ID || 'meu-bot-default' },
+  stdio: 'inherit',
+});
+
+// Repassa sinais pro filho (PM2 manda SIGINT/SIGTERM)
+['SIGINT', 'SIGTERM', 'SIGHUP'].forEach(sig => {
+  process.on(sig, () => child.kill(sig));
+});
+
+child.on('exit', (code, signal) => {
+  console.log(`[STUB] Go binary saiu (code=${code}, signal=${signal})`);
+  process.exit(code ?? 1);
+});
+
+child.on('error', (err) => {
+  console.error('[STUB] Falha ao spawnar Go binary:', err.message);
+  process.exit(1);
+});

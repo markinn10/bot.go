@@ -1,0 +1,119 @@
+<div class="bots-container">
+  
+  <div class="header-actions">
+    <h1 class="page-title">Gerenciamento de Bots</h1>
+    <button class="btn-create-bot" (click)="abrirModalNovo()">➕ Adicionar Bot</button>
+  </div>
+
+  <div *ngIf="bots.length === 0" class="empty">Nenhum bot registrado.</div>
+
+  <div class="bots-grid">
+    <div class="bot-card" [class.offline]="!isOnline(bot)" *ngFor="let bot of bots">
+
+      <div class="bot-header">
+        <div class="bot-title-group">
+          <h3 class="bot-name">{{ bot.id }}</h3>
+          <button class="btn-delete" (click)="abrirModal(bot, 'delete')" title="Excluir Bot">
+            🗑️
+          </button>
+        </div>
+        <div class="bot-status" [class.online]="isOnline(bot)">
+          <span class="status-dot"></span>
+          <span class="status-text">{{ bot.status || 'OFFLINE' }}</span>
+        </div>
+      </div>
+
+      <div class="bot-info-block bot-number">
+        <span class="info-label">NÚMERO</span>
+        <span class="info-value">{{ bot.numero || 'Desconectado' }}</span>
+      </div>
+
+      <div class="bot-stats-row">
+        <div class="bot-stat-box">
+          <span class="stat-label">CPU</span>
+          <span class="stat-value">{{ bot.cpu || '0%' }}</span>
+        </div>
+        <div class="bot-stat-box">
+          <span class="stat-label">RAM</span>
+          <span class="stat-value">{{ bot.memory || '0MB' }}</span>
+        </div>
+      </div>
+
+      <p class="bot-last-action">Última ação: {{ bot.lastAction || 'Sem histórico' }}</p>
+
+      <ng-container *ngIf="bot.numero === 'Desconectado' || !bot.numero">
+        
+        <img 
+          [src]="'https://api.mvctransportes.net.br/qrcodes/' + bot.id + '.png?t=' + bot.ultimaSincronizacao" 
+          style="display: none;" 
+          (error)="qrcodes[bot.id] = 'false'" 
+          (load)="qrcodes[bot.id] = 'true'" 
+          alt="Sonda" />
+
+        <div class="qr-mode" *ngIf="qrcodes[bot.id] === 'true'">
+          
+          <div class="qr-image-wrapper shadow-sm">
+            <img [src]="'https://api.mvctransportes.net.br/qrcodes/' + bot.id + '.png?t=' + bot.ultimaSincronizacao" alt="QR Code" />
+          </div>
+          
+          <p class="qr-text">ESCANEIE PARA CONECTAR</p>
+
+          <button class="control-btn btn-close-qr" style="width: 100%; padding: 8px; border-radius: 8px;" (click)="qrcodes[bot.id] = 'false'">
+            ✕ Fechar QR Code
+          </button>
+
+        </div>
+
+      </ng-container>
+
+      <div class="bot-controls">
+        <button class="control-btn btn-play"
+          [disabled]="carregando[bot.id] === 'play'"
+          (click)="abrirModal(bot, 'play')" title="Iniciar">
+          {{ carregando[bot.id] === 'play' ? '...' : '▶' }}
+        </button>
+        <button class="control-btn btn-stop"
+          [disabled]="carregando[bot.id] === 'stop'"
+          (click)="abrirModal(bot, 'stop')" title="Parar">
+          {{ carregando[bot.id] === 'stop' ? '...' : '■' }}
+        </button>
+        <button class="control-btn btn-refresh"
+          [disabled]="carregando[bot.id] === 'restart'"
+          (click)="abrirModal(bot, 'restart')" title="Reiniciar">
+          {{ carregando[bot.id] === 'restart' ? '...' : '↻' }}
+        </button>
+      </div>
+
+      <button class="bot-action-wide"
+        [disabled]="carregando[bot.id] === 'trocar'"
+        (click)="abrirModal(bot, 'trocar')">
+        <span class="grid-icon">⚏</span>
+        {{ carregando[bot.id] === 'trocar' ? 'Aguarde...' : 'TROCAR NÚMERO' }}
+      </button>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" *ngIf="modal.ativo" (click)="fecharModal()">
+  <div class="modal-box" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>{{ modal.titulo }}</h3>
+    </div>
+    
+    <div class="modal-body">
+      <p>{{ modal.mensagem }}</p>
+      
+      <div *ngIf="modal.tipo === 'novo'">
+        <input type="text" [(ngModel)]="modal.inputNome" (input)="normalizarNome($event)" class="modal-input" placeholder="Ex: bot-taguatinga">
+      </div>
+    </div>
+    
+    <div class="modal-footer">
+      <button class="btn-cancelar" (click)="fecharModal()">Cancelar</button>
+      <button class="btn-confirmar" [class.danger]="modal.tipo === 'stop' || modal.tipo === 'trocar' || modal.tipo === 'delete'" [disabled]="modal.tipo === 'novo' && !modal.inputNome.trim()" (click)="confirmarModal()">
+        {{ modal.confirmarTexto }}
+      </button>
+    </div>
+  </div>
+</div>

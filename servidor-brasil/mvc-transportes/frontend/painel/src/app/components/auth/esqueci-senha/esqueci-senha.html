@@ -1,0 +1,85 @@
+<div class="auth-page">
+  <div class="auth-card">
+
+    <div class="auth-logo">
+      <span>🚚</span>
+      <h1>MVC Transportes</h1>
+    </div>
+
+    <h2>Recuperar senha</h2>
+    <p class="auth-sub">Siga os passos para redefinir sua senha</p>
+
+    <div class="steps">
+      <div class="step" [class.active]="etapa >= 1" [class.done]="etapa > 1">1</div>
+      <div class="step-line" [class.done]="etapa > 1"></div>
+      <div class="step" [class.active]="etapa >= 2" [class.done]="etapa > 2">2</div>
+      <div class="step-line" [class.done]="etapa > 2"></div>
+      <div class="step" [class.active]="etapa >= 3">3</div>
+    </div>
+
+    <div class="sucesso-msg" *ngIf="sucesso">
+      {{ sucesso }}
+      <div style="margin-top: 12px;">
+        <a routerLink="/login" class="link-login">Ir para o login</a>
+      </div>
+    </div>
+
+    <!-- Etapa 1: Email -->
+    <div *ngIf="etapa === 1 && !sucesso">
+      <div class="form-group">
+        <label>E-mail cadastrado *</label>
+        <input type="email" [(ngModel)]="email" placeholder="seu@email.com" />
+      </div>
+      <div class="erro-msg" *ngIf="erro">{{ erro }}</div>
+      <button class="btn-primary" (click)="buscarEmail()" [disabled]="carregando">
+        {{ carregando ? 'Buscando...' : 'Continuar' }}
+      </button>
+    </div>
+
+    <!-- Etapa 2: Pergunta de segurança -->
+    <div *ngIf="etapa === 2 && !sucesso">
+      <div class="form-group">
+        <label>Pergunta de segurança</label>
+        <div class="pergunta-box">{{ perguntaSeguranca }}</div>
+      </div>
+      <div class="form-group">
+        <label>Sua resposta *</label>
+        <input type="text" [(ngModel)]="respostaSeguranca" placeholder="Sua resposta" />
+      </div>
+      <div class="erro-msg" *ngIf="erro">{{ erro }}</div>
+      <button class="btn-primary" (click)="verificarResposta()" [disabled]="carregando">
+        {{ carregando ? 'Verificando...' : 'Verificar' }}
+      </button>
+    </div>
+
+    <!-- Etapa 3: Nova senha -->
+    <div *ngIf="etapa === 3 && !sucesso">
+      <div class="form-group">
+        <label>Nova senha *</label>
+        <div class="input-senha">
+          <input
+            [type]="mostrarSenha ? 'text' : 'password'"
+            [(ngModel)]="novaSenha"
+            placeholder="Mínimo 6 caracteres"
+          />
+          <span class="toggle-senha" (click)="mostrarSenha = !mostrarSenha">
+            {{ mostrarSenha ? '🙈' : '👁️' }}
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Confirmar nova senha *</label>
+        <input type="password" [(ngModel)]="confirmarSenha" placeholder="Repita a senha" />
+      </div>
+      <div class="erro-msg" *ngIf="erro">{{ erro }}</div>
+      <button class="btn-primary" (click)="redefinirSenha()" [disabled]="carregando">
+        {{ carregando ? 'Salvando...' : 'Redefinir senha' }}
+      </button>
+    </div>
+
+    <div class="auth-links" *ngIf="!sucesso">
+      <a routerLink="/login">Voltar para o login</a>
+    </div>
+
+  </div>
+</div>

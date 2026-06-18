@@ -1,0 +1,141 @@
+.dashboard-container {
+  padding: 32px 36px;
+
+  .header {
+    margin-bottom: 28px;
+
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #fff;
+      margin: 0 0 4px;
+    }
+
+    .subtitle {
+      color: #444;
+      font-size: 0.82rem;
+    }
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+
+    .card {
+      background: #161616;
+      border-radius: 10px;
+      padding: 20px 22px;
+
+      .card-label {
+        font-size: 0.78rem;
+        color: #444;
+        margin-bottom: 8px;
+        display: block;
+      }
+
+      .card-value {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #fff;
+        display: block;
+      }
+
+      .card-icon { display: none; }
+      .card-info { display: contents; }
+    }
+  }
+
+  .section {
+    margin-bottom: 24px;
+
+    h3 {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #333;
+      margin: 0 0 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    .empty {
+      color: #333;
+      font-size: 0.83rem;
+      padding: 16px 0;
+    }
+  }
+
+  .bots-list {
+    background: #161616;
+    border-radius: 10px;
+    overflow: hidden;
+
+    .bot-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 18px;
+      border-bottom: 1px solid #1c1c1c;
+
+      &:last-child { border-bottom: none; }
+
+      .bot-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        .dot {
+          width: 7px;
+          height: 7px;
+          border-radius: 50%;
+          &.dot-online  { background: #4caf50; }
+          &.dot-offline { background: #444; }
+        }
+
+        .bot-id {
+          font-size: 0.85rem;
+          color: #bbb;
+        }
+      }
+
+      .bot-right {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+
+        .bot-action { font-size: 0.8rem; color: #444; }
+        .bot-perf   { font-size: 0.78rem; color: #4caf50; font-weight: 500; }
+      }
+    }
+  }
+
+  .rotas-list {
+    background: #161616;
+    border-radius: 10px;
+    overflow: hidden;
+
+    .rota-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 13px 18px;
+      border-bottom: 1px solid #1c1c1c;
+      font-size: 0.82rem;
+
+      &:last-child { border-bottom: none; }
+
+      .rota-hora  { color: #333; min-width: 60px; }
+      .rota-grupo { color: #888; min-width: 120px; font-weight: 500; }
+      .rota-msg   { color: #555; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    }
+  }
+
+  .badge-regiao {
+    background: transparent;
+    color: #42a5f5;
+    font-size: 0.72rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+}

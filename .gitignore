@@ -1,0 +1,42 @@
+# Env / secrets
+.env
+*.env
+
+# Node
+node_modules/
+npm-debug.log*
+
+# WhatsApp session
+.wwebjs_auth/
+.wwebjs_cache/
+sessao-*.db
+sessao-*.db-shm
+sessao-*.db-wal
+
+# Java / Maven
+target/
+*.class
+*.jar
+
+# Banco de dados
+data/
+*.db
+*.mv.db
+*.trace.db
+
+# Go binaries (só o arquivo executável compilado, não a pasta fonte)
+servidor-virginia/mvc-sniper/mvc-sniper
+sniper-va-src.tar.gz
+
+# Logs
+*.log
+
+# Frontend build
+frontend/painel/dist/
+frontend/painel/.angular/cache/
+
+# QR codes
+qrcodes/
+
+# Archives
+*.tar.gz

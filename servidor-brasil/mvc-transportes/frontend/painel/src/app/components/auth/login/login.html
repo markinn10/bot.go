@@ -1,0 +1,50 @@
+<div class="auth-page">
+  <div class="auth-card">
+
+    <div class="auth-logo">
+      <span>🚚</span>
+      <h1>MVC Transportes</h1>
+    </div>
+
+    <h2>Entrar na sua conta</h2>
+    <p class="auth-sub">Faça login para acessar o painel</p>
+
+    <div class="form-group">
+      <label>E-mail</label>
+      <input
+        type="email"
+        [(ngModel)]="email"
+        placeholder="seu@email.com"
+        [class.error]="erro"
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Senha</label>
+      <div class="input-senha">
+        <input
+          [type]="mostrarSenha ? 'text' : 'password'"
+          [(ngModel)]="senha"
+          placeholder="Mínimo 6 caracteres"
+          [class.error]="erro"
+        />
+        <span class="toggle-senha" (click)="mostrarSenha = !mostrarSenha">
+          {{ mostrarSenha ? '🙈' : '👁️' }}
+        </span>
+      </div>
+    </div>
+
+    <div class="erro-msg" *ngIf="erro">{{ erro }}</div>
+
+    <button class="btn-primary" (click)="login()" [disabled]="carregando">
+      {{ carregando ? 'Entrando...' : 'Entrar' }}
+    </button>
+
+    <div class="auth-links">
+      <a routerLink="/esqueci-senha">Esqueci minha senha</a>
+      <span>·</span>
+      <a routerLink="/cadastro">Criar conta</a>
+    </div>
+
+  </div>
+</div>
